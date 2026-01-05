@@ -14,15 +14,15 @@ import ListItemText from '@mui/material/ListItemText';
 import FeedIcon from '@mui/icons-material/Feed';
 import PeopleIcon from '@mui/icons-material/People';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
-import ChecklistIcon from '@mui/icons-material/Article';
-import Search from "./common/Search";
 import { useState } from "react";
+import TextField from '@mui/material/TextField';
 
 
 const drawerWidth = 200;
 
 export default function Nav() {
-    const [data, setData] = useState([]);
+    const [query, setQuery] = useState("");
+
 
     const itemsList = [
         {
@@ -48,7 +48,7 @@ export default function Nav() {
     ];
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex'}}>
             <CssBaseline />
             <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
                 <Toolbar>
@@ -62,7 +62,15 @@ export default function Nav() {
                         }}
                     >
                         TzipyS App
-                        <Search posts={data} setPosts={setData} />
+
+                        <TextField
+                            sx={{ display: 'flex',color: '#1976d2', backgroundColor: 'white',borderRadius: 1,borderColor: '#1976d2'}}
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            size="small"
+                            placeholder="Search..."
+                            variant="outlined"
+                        />
                     </Typography>
 
                 </Toolbar>
@@ -81,8 +89,8 @@ export default function Nav() {
             >
                 <Toolbar />
 
-                <Box sx={{ overflow: 'auto' }}>
-                    
+                <Box sx={{ overflow: 'auto' }} >
+
                     <List>
                         {itemsList.map((item, index) => (
                             <ListItem disablePadding key={item.text}>
@@ -113,7 +121,8 @@ export default function Nav() {
                 </Box>
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3, ml: `${drawerWidth}px`, mt: "64px" }} >
-                <Outlet />
+                <Outlet context={{ query }} />
+                {/* <Outlet /> */}
             </Box>
         </Box>
     );
