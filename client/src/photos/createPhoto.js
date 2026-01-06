@@ -9,7 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { CreatePhoto as apiCreatePhoto } from "./ApiPhotos";
 
 
-export default function FormDialog() {
+export default function FormDialog({ onPhotoCreated }) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -30,6 +30,7 @@ export default function FormDialog() {
         //קריאה לשרת פה
         apiCreatePhoto(title, imageUrl).then((response) => {
             console.log("Photo created successfully:", response.data);
+            onPhotoCreated();  
         }
         ).catch((error) => {
             console.error("Error creating photos:", error);

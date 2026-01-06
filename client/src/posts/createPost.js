@@ -9,7 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { createPost as ApicreatePost } from './ApiPosts';
 import Alert from '@mui/material/Alert';
 
-export default function FormDialog() {
+export default function FormDialog({ onPostCreated }) {
 
     const [error, setError] = useState([]);
 
@@ -39,6 +39,7 @@ export default function FormDialog() {
         try {
             const response = await ApicreatePost(title, body);
             console.log("Post created successfully:", response.data);
+            onPostCreated();  
             setError([]);
             handleClose();
         } catch (err) {

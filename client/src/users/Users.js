@@ -51,7 +51,7 @@ const Users = () => {
             <Button variant="outlined" component={RouterLink} to="/">
                 HOME
             </Button>
-            <FormDialog />
+            <FormDialog  onUserCreated={fetchUsers}/>
 
             <UnifiedSearch
                 queryField={queryField}

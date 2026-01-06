@@ -48,7 +48,7 @@ const Posts = ({ data }) => {
             <Button variant="outlined" component={RouterLink} to="/">
                 HOME
             </Button>
-            <FormDialog />
+            <FormDialog  onPostCreated={fetchPosts}/>
             {filteredPosts.map((post) => (
                 <div key={post._id} className="post-item">
                     <h3>{post.title}</h3>

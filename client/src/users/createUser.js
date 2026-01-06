@@ -9,7 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { createUser as ApicreateUser } from './ApiUsers';
 
 
-export default function FormDialog() {
+export default function FormDialog({onUserCreated }) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -33,6 +33,7 @@ export default function FormDialog() {
 
         ApicreateUser(name, username, email, address, phone).then((response) => {
             console.log("User created successfully:", response.data);
+             onUserCreated(); 
         }
         ).catch((error) => {
             console.error("Error creating user:", error);

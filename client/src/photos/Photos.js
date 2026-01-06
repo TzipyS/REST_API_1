@@ -33,7 +33,7 @@ const Photos = () => {
                 HOME
             </Button>
 
-                <FormDialog />
+                <FormDialog onPhotoCreated={fetchPhotos}/>
             
             <TitlebarImageList photos={photos} setPhotos={setPhotos} />
         </div>
